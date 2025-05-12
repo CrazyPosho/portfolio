@@ -1,12 +1,26 @@
 ---
-// src/components/Header.astro
 const links = [
-  { href: "/", text: "Quien soy", ariaLabel: "Ir a la página de inicio sobre mí" },
-  { href: "/skill", text: "Habilidades", ariaLabel: "Ir a la página de habilidades" },
-  { href: "/project", text: "Proyectos", ariaLabel: "Ir a la página de proyectos" },
-  { href: "/contact", text: "Contacto", ariaLabel: "Ir a la página de contacto" },
+  {
+    href: "/",
+    text: "Quien soy",
+    ariaLabel: "Ir a la página de inicio sobre mí",
+  },
+  {
+    href: "/skill",
+    text: "Habilidades",
+    ariaLabel: "Ir a la página de habilidades",
+  },
+  {
+    href: "/project",
+    text: "Proyectos",
+    ariaLabel: "Ir a la página de proyectos",
+  },
+  {
+    href: "/contact",
+    text: "Contacto",
+    ariaLabel: "Ir a la página de contacto",
+  },
 ];
-
 const currentPath = Astro.url.pathname;
 ---
 
@@ -24,7 +38,7 @@ const currentPath = Astro.url.pathname;
                   href={href}
                   class:list={[
                     "relative text-gray-400 hover:text-white focus:text-white transition-all duration-300 px-3 py-2 sm:px-4 sm:py-2 rounded-full block text-sm sm:text-base",
-                    { "text-white font-medium": currentPath === href }
+                    { "text-white font-medium": currentPath === href },
                   ]}
                   aria-label={ariaLabel}
                   aria-current={currentPath === href ? "page" : undefined}
@@ -33,10 +47,9 @@ const currentPath = Astro.url.pathname;
 
                   {currentPath === href && (
                     <div
-                      transition:name="active-nav-pill"
+                      transition:name="active-nav"
                       class="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 rounded-full"
-                      aria-hidden="true"
-                    ></div>
+                    />
                   )}
                 </a>
               ))
@@ -47,12 +60,3 @@ const currentPath = Astro.url.pathname;
     </div>
   </div>
 </header>
-
-<style>
-  nav a .relative.z-10 {
-    pointer-events: none;
-  }
-  nav a {
-    -webkit-tap-highlight-color: transparent;
-  }
-</style>
