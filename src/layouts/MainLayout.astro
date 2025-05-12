@@ -1,0 +1,49 @@
+---
+import Hero from "../components/About/Hero.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import "../index.css";
+import { ClientRouter } from "astro:transitions";
+const { title } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body
+    class="w-screen h-screen overflow-hidden flex flex-col bg-gradient-to-br from-gray-900 to-gray-800"
+  >
+    <main class="flex-grow overflow-y-auto bg-gradient-to-r from-blue-900">
+      {/* CLAVE: Se añadió flex-grow */}
+      {
+        /*
+        Al añadir "flex-grow" a <main>, le decimos que ocupe todo el espacio vertical
+        disponible dentro de su contenedor padre (<body>). Como <body> es flex y flex-col,
+        esto empujará al <Footer /> hacia abajo.
+        "overflow-y-auto" permitirá que <main> tenga su propio scroll si el contenido
+        interno (Hero, Header, slot) es más alto que el espacio que <main> ocupa.
+      */
+      }
+      <div class="flex-1">
+        {
+          /* Nota: Si <main> no es 'display: flex', 'flex-1' en este div no tendrá el efecto de crecimiento flex. Puede que quieras revisar esta parte. */
+        }
+        <Hero />
+      </div>
+      <Header />
+      {
+        /* Nota: El Header usualmente va fuera o al inicio de <main>, o es 'sticky'/'fixed'. Su posición actual es dentro del área de scroll. */
+      }
+      <div class="flex items-center justify-center">
+        {/* Este div centra el contenido del slot */}
+        <slot />
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

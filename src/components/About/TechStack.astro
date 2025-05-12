@@ -1,0 +1,130 @@
+---
+const mainPageTitle = "Tecnologias";
+const Tech = [
+  {
+    id: 1,
+    title: "Markup & Styling",
+    techs: [
+      {
+        name: "HTML5",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      },
+      {
+        name: "CSS3",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Languages",
+    techs: [
+      {
+        name: "JavaScript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+      {
+        name: "TypeScript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "Framework & Libraries",
+    techs: [
+      {
+        name: "React",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "TailwindCSS",
+        icon: "https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/tailwindcss/tailwindcss-original.svg",
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "Database",
+    techs: [
+      {
+        name: "PostgreSQL",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+      },
+      {
+        name: "MongoDB",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      },
+      {
+        name: "MySQL",
+        icon: "https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/mysql/mysql-original.svg",
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "Tools",
+    techs: [
+      {
+        name: "Git",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      },
+      {
+        name: "Docker",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      },
+    ],
+  },
+];
+---
+
+<section class="w-full max-w-4xl mx-auto py-4 px-4">
+  <h1
+    class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 text-transparent bg-clip-text text-center text-4xl font-bold mb-4"
+  >
+    {mainPageTitle}
+  </h1>
+  <div
+    class="grid
+    grid-cols-1
+    md:grid-cols-3
+    gap-6
+    md:gap-8
+    auto-rows-auto"
+  >
+    {
+      Tech.map((category) => (
+        <div
+          class:list={[
+            "relative group rounded-2xl p-1 bg-gradient-to-br from-indigo-600 via-purple-500 to-pink-500",
+            "transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-2xl hover:shadow-purple-500/30",
+            category.id === 4 ? "md:col-span-2" : "",
+            "row-span-1", // row-span-1 es el comportamiento por defecto, se puede omitir si no hay otros row-spans
+          ]}
+        >
+          <div class="bg-white dark:bg-slate-800 rounded-xl p-4 md:p-6 h-full flex flex-col">
+            <div class="flex items-center gap-3 mb-4">
+              <h2 class="text-base md:text-lg font-semibold text-gray-800 dark:text-white">
+                {" "}
+                {category.title}
+              </h2>
+            </div>
+            <div class="flex flex-wrap gap-2 flex-grow">
+              {category.techs.map((tech) => (
+                <div class="flex items-center bg-slate-100 dark:bg-slate-700/70 px-3 py-1.5 rounded-lg text-gray-700 dark:text-gray-200 text-xs">
+                  {/* Ajustado color de fondo y texto de los badges */}
+                  <img
+                    src={tech.icon}
+                    alt={tech.name}
+                    class="w-4 h-4 md:w-5 md:h-5 mr-1.5 object-contain"
+                  />
+                  <span>{tech.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

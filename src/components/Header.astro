@@ -1,0 +1,58 @@
+---
+// src/components/Header.astro
+const links = [
+  { href: "/", text: "Quien soy", ariaLabel: "Ir a la página de inicio sobre mí" },
+  { href: "/skill", text: "Habilidades", ariaLabel: "Ir a la página de habilidades" },
+  { href: "/project", text: "Proyectos", ariaLabel: "Ir a la página de proyectos" },
+  { href: "/contact", text: "Contacto", ariaLabel: "Ir a la página de contacto" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="py-2 transition-colors duration-300">
+  <div class="container mx-auto">
+    <div class="lg:w-[95%] w-full mx-auto">
+      <div class="flex items-center justify-center">
+        <div class="w-full flex justify-center">
+          <nav
+            class="bg-gray-900/80 rounded-full px-4 py-2 backdrop-blur-sm shadow-lg flex items-center justify-around max-w-3xl w-full"
+          >
+            {
+              links.map(({ href, text, ariaLabel }) => (
+                <a
+                  href={href}
+                  class:list={[
+                    "relative text-gray-400 hover:text-white focus:text-white transition-all duration-300 px-3 py-2 sm:px-4 sm:py-2 rounded-full block text-sm sm:text-base",
+                    { "text-white font-medium": currentPath === href }
+                  ]}
+                  aria-label={ariaLabel}
+                  aria-current={currentPath === href ? "page" : undefined}
+                >
+                  <span class="relative z-10">{text}</span>
+
+                  {currentPath === href && (
+                    <div
+                      transition:name="active-nav-pill"
+                      class="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 rounded-full"
+                      aria-hidden="true"
+                    ></div>
+                  )}
+                </a>
+              ))
+            }
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  nav a .relative.z-10 {
+    pointer-events: none;
+  }
+  nav a {
+    -webkit-tap-highlight-color: transparent;
+  }
+</style>

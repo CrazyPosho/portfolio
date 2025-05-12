@@ -1,0 +1,112 @@
+---
+const sectionTitle = "Mis Proyectos";
+
+// project.iconColor sí se usará para los iconos de los enlaces.
+const projects = [
+  {
+    title: "ClimaAPI",
+    description:
+      "Buscador de Clima con API externa. Explora y comparte el clima.",
+    tech: ["React", "API"],
+    demoLink: "https://crazyposho.github.io/GifExpert/",
+    codeLink: "https://github.com/CrazyPosho/GifExpert",
+    iconColor:
+      "text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300",
+  },
+  {
+    title: "CrytoAPI",
+    description:
+      "Aplicación de temporizador simple y efectiva con controles de inicio, pausa y reinicio.",
+    tech: ["JavaScript", "HTML", "CSS"],
+    demoLink: "https://crazyposho.github.io/timer/",
+    codeLink: "https://github.com/CrazyPosho/timer",
+    iconColor:
+      "text-teal-500 hover:text-teal-400 dark:text-teal-400 dark:hover:text-teal-300",
+  },
+  {
+    title: "SonicWave",
+    description:
+      "Plataforma de streaming de música con una interfaz moderna y funcionalidades intuitivas.",
+    tech: ["React", "API", "Audio"],
+    demoLink: "https://crazyposho.github.io/SonicWave/",
+    codeLink: "https://github.com/CrazyPosho/SonicWave",
+    iconColor:
+      "text-purple-500 hover:text-purple-400 dark:text-purple-400 dark:hover:text-purple-300",
+  },
+];
+
+const ExternalLinkIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>`;
+const GitHubIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-6 h-6" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg>`;
+---
+
+<section class="w-full max-w-4xl mx-auto py-4 px-4">
+  <h1
+    class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 text-transparent bg-clip-text text-center text-4xl font-bold mb-4"
+  >
+    {sectionTitle}
+  </h1>
+
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full"
+  >
+    {
+      projects.map((project) => (
+        <div
+          class:list={[
+            "relative group rounded-2xl p-1 bg-gradient-to-br from-indigo-600 via-purple-500 to-pink-500",
+            "transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-2xl hover:shadow-purple-500/30",
+          ]}
+        >
+          <div class="bg-white dark:bg-slate-800 rounded-xl p-5 md:p-6 h-full flex flex-col">
+            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+              {project.title}
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+              {project.description}
+            </p>
+            <div class="mb-4">
+              <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">
+                Tecnologías:
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {project.tech.map((tech) => (
+                  <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/70 text-xs font-medium text-gray-700 dark:text-gray-200 rounded-md">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div class="flex gap-4 mt-auto border-t border-slate-200 dark:border-slate-700 pt-4">
+              <a
+                href={project.demoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class:list={[
+                  "flex items-center gap-1.5 transition-colors",
+                  project.iconColor,
+                ]}
+                aria-label={`Ver demo de ${project.title}`}
+              >
+                <Fragment set:html={ExternalLinkIcon} />
+                <span class="text-sm">Demo</span>
+              </a>
+              <a
+                href={project.codeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class:list={[
+                  "flex items-center gap-1.5 transition-colors",
+                  project.iconColor,
+                ]}
+                aria-label={`Ver código de ${project.title}`}
+              >
+                <Fragment set:html={GitHubIcon} />
+                <span class="text-sm">Código</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
