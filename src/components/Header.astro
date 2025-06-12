@@ -1,62 +1,47 @@
 ---
 const links = [
-  {
-    href: "/",
-    text: "Quien soy",
-    ariaLabel: "Ir a la página de inicio sobre mí",
-  },
-  {
-    href: "/skill",
-    text: "Habilidades",
-    ariaLabel: "Ir a la página de habilidades",
-  },
-  {
-    href: "/project",
-    text: "Proyectos",
-    ariaLabel: "Ir a la página de proyectos",
-  },
-  {
-    href: "/contact",
-    text: "Contacto",
-    ariaLabel: "Ir a la página de contacto",
-  },
+  { href: "/", text: "Quien soy", ariaLabel: "Ir a la página de inicio sobre mí" },
+  { href: "/skill/", text: "Habilidades", ariaLabel: "Ir a la página de habilidades" },
+  { href: "/project/", text: "Proyectos", ariaLabel: "Ir a la página de proyectos" },
+  { href: "/contact/", text: "Contacto", ariaLabel: "Ir a la página de contacto" },
 ];
+
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="py-2 transition-colors duration-300">
-  <div class="container mx-auto">
-    <div class="lg:w-[95%] w-full mx-auto">
-      <div class="flex items-center justify-center">
-        <div class="w-full flex justify-center">
-          <nav
-            class="bg-gray-900/80 rounded-full px-4 py-2 backdrop-blur-sm shadow-lg flex items-center justify-around max-w-3xl w-full"
-          >
-            {
-              links.map(({ href, text, ariaLabel }) => (
-                <a
-                  href={href}
-                  class:list={[
-                    "relative text-gray-400 hover:text-white focus:text-white transition-all duration-300 px-3 py-2 sm:px-4 sm:py-2 rounded-full block text-sm sm:text-base",
-                    { "text-white font-medium": currentPath === href },
-                  ]}
-                  aria-label={ariaLabel}
-                  aria-current={currentPath === href ? "page" : undefined}
-                >
-                  <span class="relative z-10">{text}</span>
 
-                  {currentPath === href && (
-                    <div
-                      transition:name="active-nav"
-                      class="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 rounded-full"
-                    />
-                  )}
-                </a>
-              ))
-            }
-          </nav>
-        </div>
-      </div>
-    </div>
+  <div class="container mx-auto lg:w-[95%] w-full opacity-100">
+    <nav class="bg-gray-900/80 rounded-full px-4 py-2 backdrop-blur-sm shadow-lg flex items-center justify-around max-w-3xl w-full mx-auto opacity-100 visible relative">
+      <!-- Fondo animado que se mueve -->
+      <div
+      transition:name="active-nav"
+
+        class="absolute inset-y-2 bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 rounded-full transition-all duration-300 ease-out opacity-100"
+        style={`
+          width: calc(100% / ${links.length} - 0.5rem);
+          left: calc(${links.findIndex(link => link.href === currentPath)} * (100% / ${links.length}) + 0.25rem);
+        `}
+      />
+
+      {links.map(({ href, text, ariaLabel }) => {
+        const isActive = currentPath === href;
+        return (
+          <a
+            href={href}
+            class={`relative text-gray-400 hover:text-white focus:text-white transition-all duration-300 ease-out px-3 py-2 sm:px-4 sm:py-2 rounded-full block text-sm sm:text-base opacity-100 visible z-10 transform hover:scale-105 ${
+              isActive
+                ? 'text-white font-medium shadow-lg scale-105'
+                : 'hover:shadow-md'
+            }`}
+            aria-label={ariaLabel}
+            aria-current={isActive ? "page" : undefined}
+          >
+            <span class="relative z-20 opacity-100 visible antialiased drop-shadow-sm" >
+              {text}
+            </span>
+          </a>
+        );
+      })}
+    </nav>
   </div>
 </header>

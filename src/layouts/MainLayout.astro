@@ -2,8 +2,13 @@
 import Hero from "../components/About/Hero.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import "../index.css";
 import { ClientRouter } from "astro:transitions";
+import "../index.css";
+
+interface Props {
+  title: string;
+}
+
 const { title } = Astro.props;
 ---
 
@@ -14,14 +19,11 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
     <ClientRouter />
+
   </head>
-  <body
-    class="w-screen h-screen overflow-hidden flex flex-col bg-gradient-to-br from-gray-900 to-gray-800"
-  >
-    <main class="flex-grow overflow-y-auto bg-gradient-to-r from-blue-900">
-      <div class="flex-1">
-        <Hero />
-      </div>
+  <body class="w-screen h-screen overflow-hidden flex flex-col bg-gradient-to-br from-gray-900 to-gray-800 opacity-100">
+    <main class="flex-grow overflow-y-auto bg-gradient-to-r from-blue-900 opacity-100">
+      <Hero />
       <Header />
       <div class="flex items-center justify-center">
         <slot />
