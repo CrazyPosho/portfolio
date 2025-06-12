@@ -99,20 +99,19 @@ const Tech = [
             "relative group rounded-2xl p-1 bg-gradient-to-br from-indigo-600 via-purple-500 to-pink-500",
             "transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-2xl hover:shadow-purple-500/30",
             category.id === 4 ? "md:col-span-2" : "",
-            "row-span-1", // row-span-1 es el comportamiento por defecto, se puede omitir si no hay otros row-spans
+            "row-span-1"
           ]}
         >
-          <div class="bg-white dark:bg-slate-800 rounded-xl p-4 md:p-6 h-full flex flex-col">
+          <div class="bg-slate-800 rounded-xl p-4 md:p-6 h-full flex flex-col">
             <div class="flex items-center gap-3 mb-4">
-              <h2 class="text-base md:text-lg font-semibold text-gray-800 dark:text-white">
+              <h2 class="text-base md:text-lg font-semibold text-white">
                 {" "}
                 {category.title}
               </h2>
             </div>
             <div class="flex flex-wrap gap-2 flex-grow">
               {category.techs.map((tech) => (
-                <div class="flex items-center bg-slate-100 dark:bg-slate-700/70 px-3 py-1.5 rounded-lg text-gray-700 dark:text-gray-200 text-xs">
-                  {/* Ajustado color de fondo y texto de los badges */}
+                <div class="flex items-center bg-slate-700/70 px-3 py-1.5 rounded-lg text-gray-200 text-xs">
                   <img
                     src={tech.icon}
                     alt={tech.name}
